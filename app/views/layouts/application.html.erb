@@ -12,6 +12,16 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% if signed_in? %>
+      <%= current_user.email %>
+       <%= current_user.id %>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <button><%= link_to 'Add a friend', friends_path %></button>
+      <button><%= link_to 'See Friend Requests', friend_requests_path %></button>
+    <% else %>
+      <%= link_to 'Sign up', new_user_registration_path %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

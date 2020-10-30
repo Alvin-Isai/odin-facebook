@@ -1,0 +1,12 @@
+<h4><%= pluralize(@friends.count, 'friend') %> matched your search </h4>
+
+<% if @friends.any? %>
+  <% @friends.each do |friend| %>
+    <%= friend.email %>
+    <%= form_for FriendRequest.new do %>
+      <%= hidden_field_tag :from_user_id, current_user.id %>
+      <%= hidden_field_tag :to_user_id, friend.id %>
+      <%= submit_tag 'Send request' %>
+    <% end %>
+  <% end %>
+<% end %>

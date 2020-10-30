@@ -1,0 +1,11 @@
+<h1>Friend Requests</h1>
+<% if @friend_requests.any? %>
+  <% @friend_requests.each do |request| %>
+    <%= request.from_user.email %>
+    <%= request.from_user.id %>
+    <button><%= link_to 'Add friend', root_path %></button>
+    <button><%= link_to 'Deny request', request, method: :delete %><br>
+  <% end %>
+<% else %>
+  <p>You have no friend requests</p>
+<% end %>

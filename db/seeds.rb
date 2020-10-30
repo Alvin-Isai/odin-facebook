@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+FriendRequest.create([{ from_user_id: 1, to_user_id: 2 }, { from_user_id: 2, to_user_id: 3 }])
