@@ -3,9 +3,30 @@
   <% @friend_requests.each do |request| %>
     <%= request.from_user.email %>
     <%= request.from_user.id %>
-    <button><%= link_to 'Add friend', root_path %></button>
-    <button><%= link_to 'Deny request', request, method: :delete %><br>
+    <%= form_for Friend.new do %>
+      <%= hidden_field_tag :friend_a_id, current_user.id %>
+      <%= hidden_field_tag :friend_b_id, request.from_user.id %>
+      <%= hidden_field_tag :friend_requests_id, request.id %>
+      <%= submit_tag 'Add friend' %>
+    <% end %>
+    <button><%= link_to 'Deny request', request, method: :delete %></button><br>
   <% end %>
 <% else %>
   <p>You have no friend requests</p>
+<% end %>
+<br><br>
+
+<h1>Friends:</h1>
+<% if @friends.any? %>
+  <% @friends.each do |friend| %>
+    <% if current_user.id == friend.friend_a.id %>
+      <%= friend.friend_b.email %>
+      <%= friend.friend_b.id %><br>
+    <% else %>
+      <%= friend.friend_a.email %>
+      <%= friend.friend_a.id %><br>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>You have no friends</p>
 <% end %>
