@@ -9,6 +9,15 @@
   <strong>Body:</strong>
   <%= @post.body %>
 </p>
+<p>
+  <strong>Likes:</strong>
+  <%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%>
+</p>
+
+<p><%= @post.comments.count %> Comments</p>
+<%= render @post.comments %>
+<%= render 'comments/form' %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Back', posts_path %><br><br>
+
