@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <% if current_user.profile.avatar.exists? %>
+    <%= image_tag current_user.profile.avatar.url(:medium) %>
+  <% end %>
+</p>
 <p>
   <strong>Fname:</strong>
   <%= current_user.profile.fname%>
