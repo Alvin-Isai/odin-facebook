@@ -16,17 +16,3 @@
 <% end %>
 <br><br>
 
-<h1>Friends:</h1>
-<% if @friends.any? %>
-  <% @friends.each do |friend| %>
-    <% if current_user.id == friend.friend_a.id %>
-      <%= friend.friend_b.email %>
-      <%= friend.friend_b.id %><br>
-    <% else %>
-      <%= friend.friend_a.email %>
-      <%= friend.friend_a.id %><br>
-    <% end %>
-  <% end %>
-<% else %>
-  <p>You have no friends</p>
-<% end %>

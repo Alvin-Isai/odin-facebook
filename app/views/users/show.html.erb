@@ -1,0 +1,6 @@
+<% if current_user.profile %>
+  <%= render 'profile' %>
+  <%= link_to 'Edit', edit_profile_path(@profile) %> |
+<% else %>
+  <%= controller.redirect_to new_profile_path %>
+<% end %>
