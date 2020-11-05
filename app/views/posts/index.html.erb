@@ -1,9 +1,13 @@
-<div class='container'>
-  <div class='notication'>
-    <div class='columns'>
-      <%= render 'profile' %>
-      <%= render 'post' %>
-      <%= render 'friends/user_friends' %>
+<% if current_user.profile %>
+  <div class='container'>
+    <div class='notication'>
+      <div class='columns'>
+        <%= render 'profile' %>
+        <%= render 'post' %>
+        <%= render 'friendships/user_friends' %>
+      </div>
     </div>
   </div>
-</section>
+<% else %>
+  <% controller.redirect_to new_profile_path %>
+<% end %>

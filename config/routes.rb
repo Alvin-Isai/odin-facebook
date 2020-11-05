@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     resources :likes
     resources :comments
   end
-  resources :friends
+  resources :friendships
   resources :friend_requests
 end

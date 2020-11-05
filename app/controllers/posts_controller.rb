@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @friends = Friend.where('friend_a_id = ? OR friend_b_id = ?', current_user.id, current_user.id)
+    @friends = Friendship.all
     @posts = Post.all.order('created_at DESC')
   end
 

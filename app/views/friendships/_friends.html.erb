@@ -2,7 +2,7 @@
 
 <% if @friends.any? %>
   <% @friends.each do |friend| %>
-    <%= friend.email %>
+    <%= friend.fname + ' ' + friend.lname %>
     <%= form_for FriendRequest.new do %>
       <%= hidden_field_tag :from_user_id, current_user.id %>
       <%= hidden_field_tag :to_user_id, friend.id %>

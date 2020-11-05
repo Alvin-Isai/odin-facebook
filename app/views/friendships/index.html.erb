@@ -1,6 +1,6 @@
 <h1>Send a friend request</h1>
 
-<%= form_with url:'/friends', method: :get, local: true do |f| %>
+<%= form_with url:'/friendships', method: :get, local: true do |f| %>
   <%= f.text_field :search %>
 
   <%= f.submit 'Search' %>

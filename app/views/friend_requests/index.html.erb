@@ -3,9 +3,9 @@
   <% @friend_requests.each do |request| %>
     <%= request.from_user.email %>
     <%= request.from_user.id %>
-    <%= form_for Friend.new do %>
-      <%= hidden_field_tag :friend_a_id, current_user.id %>
-      <%= hidden_field_tag :friend_b_id, request.from_user.id %>
+    <%= form_for Friendship.new do %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :friend_id, request.from_user.id %>
       <%= hidden_field_tag :friend_requests_id, request.id %>
       <%= submit_tag 'Add friend' %>
     <% end %>

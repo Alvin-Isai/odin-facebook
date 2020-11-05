@@ -1,15 +1,14 @@
 class FriendRequestsController < ApplicationController
   def index
-    @friends = Friend.where('friend_a_id = ? OR friend_b_id = ?', current_user.id, current_user.id)
     @friend_requests = FriendRequest.where('to_user_id = ?', current_user.id)
   end
 
   def create
     @friend_requests = FriendRequest.new(friend_requests_params)
     if @friend_requests.save
-      redirect_to friends_path
+      redirect_to friendships_path
     else
-      render friends_path
+      render friendships_path
     end
   end
 

@@ -5,8 +5,7 @@
   </nav>
   
   <% if @friends.any? %>
-    <% @friends.each do |friend| %>
-      
+    <% current_user.friends.each do |friend| %>
       <div class='panel-block'>
         <article class='media'>
           <div class='media-left'>
@@ -17,11 +16,7 @@
           <div class='media-content'>
             <div class='content'>
               <p>
-                <% if current_user.id == friend.friend_a.id %>
-                  <%= friend.friend_b.email %>
-                <% else %>
-                  <%= friend.friend_a.email %>
-                <% end %>    
+                <%= friend.profile.fname %>
               </p>
             </div>
           </div>
