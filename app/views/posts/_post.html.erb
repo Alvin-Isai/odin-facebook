@@ -1,0 +1,51 @@
+<div class='column is-half'>
+  <% current_user.posts.each do |post| %>
+    <div class='box'>    
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <%= image_tag current_user.profile.avatar.url(:thumb) %>
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <p class='tag is-info is-small' >
+                <%= current_user.profile.fname + ' ' + current_user.profile.lname%>
+              </p>
+              <br>
+                <strong class='title is-4'><%= post.title %></strong>
+                <br>
+              <%= post.body %>
+            </p>
+          </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <%= link_to post, class: "level-item" do %>
+                <span class="icon is-small"><i class="fa fa-link"></i></span>
+              <% end %>
+              <%= link_to edit_post_path(post), class: "level-item" do %>
+                <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              <% end %>
+              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: "level-item" do %>
+                <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
+              <% end %>
+              <a class='level-item'>
+                <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'like' : 'likes' %>
+              </a>
+            </div>
+          </nav>
+        </div>
+        <div class="media-right">
+          <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+          <% if pre_like %>
+            <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+          <% else %>
+            <%= button_to 'Like', post_likes_path(post), method: :post %>
+          <% end %>
+        </div>
+      </article>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'New Post', new_post_path %>

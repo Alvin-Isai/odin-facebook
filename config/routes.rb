@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  devise_for :users
+  resources :users, only: %i[show index]
+  resource :profile
+  devise_scope :user do
+    authenticated :user do
+      root 'posts#index', as: :authenticated_root
+    end
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
   get 'users/show'
   get 'profile', to: 'users#show'
   resources :posts do
@@ -8,7 +18,4 @@ Rails.application.routes.draw do
   end
   resources :friends
   resources :friend_requests
-  devise_for :users
-  resources :users, only: [:show]
-  resource :profile
 end

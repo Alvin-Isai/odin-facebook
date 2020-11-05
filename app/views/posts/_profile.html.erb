@@ -1,0 +1,43 @@
+<div class="column is-one-quarter">
+	<nav class="panel">
+		<p class="panel-heading">Profile</p>
+		<div class="panel-block">
+			<article class="media">
+				<div class="media-left">
+					<figure class="image is-64x64">
+						<%= image_tag current_user.profile.avatar.url(:thumb) %>
+					</figure>
+				</div>
+				<div class="media-content">
+					<div class="content">
+						<p>
+						  <strong><%= current_user.profile.fname + ' ' + current_user.profile.lname%></strong><br />
+						</p>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="panel-block">
+			<div class="level is-mobile">
+				<div class="level-item has-centered-text">
+					<div>
+						<p class="heading">Posts</p>
+						<p class="title is-6"><%= current_user.posts.count %></p>
+					</div>
+				</div>
+				<div class="level-item has-centered-text">
+					<div>
+						<p class="heading">Friends</p>
+						<p class="title is-6"><%= current_user.friends.name%></p>
+					</div>
+				</div>
+					<div class="level-item has-centered-text">
+					<div>
+						<p class="heading">Followers</p>
+						<p class="title is-6">465K</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</div>

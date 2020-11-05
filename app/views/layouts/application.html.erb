@@ -6,22 +6,77 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if signed_in? %>
-      <%= link_to current_user.email, users_show_path %>
-       <%= current_user.id %>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-      <button><%= link_to 'Add a friend', friends_path %></button>
-      <button><%= link_to 'See Friend Requests', friend_requests_path %></button>
-    <% else %>
-      <%= link_to 'Sign up', new_user_registration_path %>
-      <%= link_to 'Sign in', new_user_session_path %>
-    <% end %>
+   <% if flash[:notice] %>
+  		<div class="notification is-primary global-notification">
+  			<p class="notice"><%= notice %></p>
+  		</div>
+  	<% end %>
+    
+    <% if flash[:alert] %>
+  		<div class="notification is-danger global-notification">
+  			<p class="alert"><%= alert %></p>
+  		</div>
+  	<% end %>
+
+    <nav class="navbar is-info">
+  		<div class="navbar-brand">
+      <% if signed_in? %>
+  		  <%= link_to authenticated_root_path, class: "navbar-item" do %>
+  			  <h1 class="title is-5">Odin Facebook</h1>
+  		  <% end %>
+      <% else %>
+        <%= link_to unauthenticated_root_path, class: "navbar-item" do %>
+  			  <h1 class="title is-5">Odin Facebook</h1>
+  		  <% end %>
+      <% end %>
+        <div class="navbar-burger burger" data-target="navbarExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+  	  </div>
+
+      <div id="navbarExample" class="navbar-menu">
+				<div class="navbar-end">
+          <div class="navbar-item">
+					  <div class="field is-grouped">
+              <% if signed_in? %>
+                <% if current_user.profile %>
+                  <p class='control'>
+                    <%= link_to current_user.profile.fname + ' ' + current_user.profile.lname, users_show_path, class: "button is-info is-inverted" %>
+                  </p>
+                <% else %>
+                  <p class='control'>
+                    <%= link_to 'Create your Profile', users_show_path, class: "button is-info is-inverted" %>
+                  </p>
+                <% end %>
+                <p class='control'>
+                  <%= link_to 'Add a friend', friends_path, class: "button is-info is-inverted" %>
+                </p>
+                <p class='control'>
+                  <%= link_to 'See Friend Requests', friend_requests_path, class: "button is-info is-inverted" %>
+                </p>
+                <p class='control'>
+                  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "button is-info is-inverted" %>
+                </p>
+              <% else %>
+                <p class='control'>
+                  <%= link_to 'Sign up', new_user_registration_path, class: "button is-info is-inverted"%>
+                </p>
+                <p class='control'>
+                  <%= link_to 'Sign in', new_user_session_path, class: "button is-info is-inverted" %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>  
     <%= yield %>
   </body>
 </html>

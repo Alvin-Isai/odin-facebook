@@ -4,3 +4,11 @@
 <% else %>
   <%= controller.redirect_to new_profile_path %>
 <% end %>
+
+<br><br>
+<h1>Posts</h1>
+<% current_user.posts.each do |p|%>
+  <%= p.title %>
+  <%= p.body %>
+  <%= p.likes.count %><br>
+<% end %>

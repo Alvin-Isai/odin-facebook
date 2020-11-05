@@ -1,6 +1,5 @@
 class FriendsController < ApplicationController
   def index
-    @friends = Friend.where('friend_a_id = ? OR friend_b_id = ?', current_user.id, current_user.id)
     if params[:search]
       @friends = User.where(email: params[:search])
     end
