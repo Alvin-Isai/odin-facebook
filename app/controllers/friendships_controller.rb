@@ -1,9 +1,4 @@
 class FriendshipsController < ApplicationController
-  def index
-    if params[:search]
-      @friends = Profile.where(fname: params[:search])
-    end
-  end
 
   def create
     @friends = Friendship.create_reciprocal_for_ids(current_user.id, params[:friend_id])

@@ -1,24 +1,56 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <% if current_user.profile.avatar.exists? %>
-    <%= image_tag current_user.profile.avatar.url(:medium) %>
-  <% end %>
-</p>
-<p>
-  <strong>Fname:</strong>
-  <%= current_user.profile.fname%>
-
-<p>
-  <strong>Lname:</strong>
-  <%= current_user.profile.lname %>
-</p>
-
-<p>
-  <strong>Occupation:</strong>
-  <%= current_user.profile.occupation %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= current_user.profile.bio %>
-</p>
+<div class='section'>
+  <div class='columns is-centered'>
+    <div class="column is-half">
+      <nav class="panel">
+        <p class="panel-heading">Profile</p>
+        <div class="panel-block">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-150x150">
+                <%= image_tag current_user.profile.avatar.url(:thumb) %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= current_user.profile.fname + ' ' + current_user.profile.lname%></strong><br />
+                  <% unless current_user.profile.bio.empty? %>
+                    <small><%= current_user.profile.bio %></small>
+                  <% else %>
+                    <small><i>No bio has been made...</i></small>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="panel-block">
+          <div class="level is-mobile">
+            <div class="level-item has-centered-text">
+              <div>
+                <p class="heading">Posts</p>
+                <p class="title is-6"><%= current_user.posts.count %></p>
+              </div>
+            </div>
+            <div class="level-item has-centered-text">
+              <div>
+                <p class="heading">Friends</p>
+                <p class="title is-6"><%= current_user.friends.count%></p>
+              </div>
+            </div>
+              <div class="level-item has-centered-text">
+              <div>
+                <p class="heading">Edit</p>
+                <p class="title is-6">
+                  <%= link_to edit_profile_path, class: "level-item" do %>
+                		<span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              		<% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

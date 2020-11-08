@@ -1,0 +1,19 @@
+<div class='section'>
+  <div class='container'>
+    <div class='columns is-centered'>
+      <div class='column is-4'>
+        <h2 class="title is-2">Add a friend</h2><br><br>
+          <% @users.each do |user| %>
+            <% unless current_user.friends.ids.include?(user.id) %>
+              <%= user.profile.fname + ' ' + user.profile.lname %>
+              <%= form_for FriendRequest.new do %>
+                <%= hidden_field_tag :from_user_id, current_user.id %>
+                <%= hidden_field_tag :to_user_id, user.id%>
+                <%= submit_tag 'Send request', class:'button is-info is-small' %>
+              <% end %>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

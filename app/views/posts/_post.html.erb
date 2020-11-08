@@ -1,4 +1,7 @@
 <div class='column is-half'>
+  <nav class='panel'>
+    <p class='panel-heading'>Posts</p>
+  </nav>
   <% current_user.posts.each do |post| %>
     <div class='box'>    
       <article class="media">
@@ -48,4 +51,3 @@
     </div>
   <% end %>
 </div>
-<%= link_to 'New Post', new_post_path %>

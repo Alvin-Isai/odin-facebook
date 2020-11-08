@@ -1,23 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class='columns is-centered'>
+  <div class='column is-half'>
+    <div class='box'>    
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <%= image_tag @post.user.profile.avatar.url(:thumb) %>
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <p class='tag is-info is-small' >
+                <%= @post.user.profile.fname + ' ' + @post.user.profile.lname %>
+              </p>
+              <br>
+                <strong class='title is-4'><%= @post.title %></strong>
+                <br>
+              <%= @post.body %>
+            </p>
+          </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <a class='level-item'>
+                <%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'like' : 'likes' %>
+              </a>
+            </div>
+          </nav>
+        </div>
+        <div class="media-right">
+          <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+          <% if pre_like %>
+            <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+          <% else %>
+            <%= button_to 'Like', post_likes_path(@post), method: :post %>
+          <% end %>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+<br><br>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class='columns is-centered'>
+  <div class='column is-half'>
+  <h5 class='title is-5'>Comments:</h5><br>
+    <%= render @post.comments %><br><br>
+    <p><%= @post.comments.count %> Comments</p>
+    <%= render 'comments/form' %><br><br>
+    <%= link_to 'Back', posts_path %>
+  </div>
+</div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-<p>
-  <strong>Likes:</strong>
-  <%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%>
-</p>
-
-<p><%= @post.comments.count %> Comments</p>
-<%= render @post.comments %>
-<%= render 'comments/form' %>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %><br><br>
 

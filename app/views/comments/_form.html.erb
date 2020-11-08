@@ -1,5 +1,26 @@
-<%= form_for([@post, @post.comments.build]) do |f| %>
-  <%= f.text_area :comment %><br>
-  <%= f.hidden_field :user_id, :value => current_user.id %><br>
-  <%= f.submit 'Leave a reply' %><br>
-<% end %>
+<div class="media-content">
+  <div class="field">
+    <p class="control">
+      <%= form_for([@post, @post.comments.build]) do |f| %>
+      <%= f.text_area :comment, class: 'textarea', placeholder: 'Add a comment...' %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </p>
+  </div>    
+  <nav class="level">
+    <div class="level-left">
+      <div class="level-item">
+          <%= f.submit 'Submit', class: 'button is-info' %>
+          <% end %>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+    
+    
+    
+   
+      
+    
+    

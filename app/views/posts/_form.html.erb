@@ -12,16 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <div class='control'>
+      <%= form.label :title, class: 'label' %>
+      <%= form.text_field :title, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <div class='control'>
+      <%= form.label :body, class: 'label' %>
+      <%= form.text_area :body, class: 'textarea', placeholder: 'Compose a new post...' %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <div class='control'>
+      <%= form.submit 'Submit', class: 'button is-info' %>
+    </div>
   </div>
 <% end %>

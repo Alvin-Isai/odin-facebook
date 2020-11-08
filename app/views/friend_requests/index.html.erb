@@ -1,18 +1,32 @@
-<h1>Friend Requests</h1>
-<% if @friend_requests.any? %>
-  <% @friend_requests.each do |request| %>
-    <%= request.from_user.email %>
-    <%= request.from_user.id %>
-    <%= form_for Friendship.new do %>
-      <%= hidden_field_tag :user_id, current_user.id %>
-      <%= hidden_field_tag :friend_id, request.from_user.id %>
-      <%= hidden_field_tag :friend_requests_id, request.id %>
-      <%= submit_tag 'Add friend' %>
-    <% end %>
-    <button><%= link_to 'Deny request', request, method: :delete %></button><br>
-  <% end %>
-<% else %>
-  <p>You have no friend requests</p>
-<% end %>
-<br><br>
-
+<div class='section'>
+  <div class='container'>
+    <div class='columns is-centered'>
+      <div class='column is-4'>
+        <h2 class="title is-2">Friend Requests</h2><br><br>
+          <% if @friend_requests.any? %>
+            <% @friend_requests.each do |request| %>
+              <%= request.from_user.profile.fname + ' ' + request.from_user.profile.lname %>
+              <%= form_for Friendship.new do %>
+                <%= hidden_field_tag :user_id, current_user.id %>
+                <%= hidden_field_tag :friend_id, request.from_user.id %>
+                <%= hidden_field_tag :friend_requests_id, request.id %>
+                <div class='field is-grouped'>
+                  <p class='control'>
+                    <%= button_tag(type: 'submit', class: 'button is-success is-small') do %>
+                      <i class="fa fa-check-square"> Add</i>
+                    <% end %>
+              <% end %>
+                    <%= link_to request, method: :delete, class:'button is-danger is-small' do %>
+                      <i class='fa fa-ban'> Deny</i>
+                    <% end %>
+                  </p>
+                </div>            
+            <% end %>
+          <% else %>
+            <p>You have no friend requests</p>
+          <% end %>
+          <br><br>
+      </div>
+    </div>
+  </div>
+</div>

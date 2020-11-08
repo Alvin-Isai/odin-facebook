@@ -5,10 +5,12 @@ class FriendRequestsController < ApplicationController
 
   def create
     @friend_requests = FriendRequest.new(friend_requests_params)
-    if @friend_requests.save
-      redirect_to friendships_path
+    if already_requested?
+      flash[:notice] = "You've already sent a request"
+      redirect_to users_path
     else
-      render friendships_path
+      @friend_requests.save
+      redirect_to friend_requests_path
     end
   end
 
@@ -19,8 +21,12 @@ class FriendRequestsController < ApplicationController
   end
 
   private
-  
+
   def friend_requests_params
     params.permit(:from_user_id, :to_user_id)
+  end
+
+  def already_requested?
+    FriendRequest.where(from_user_id: current_user.id, to_user_id: params[:to_user_id]).exists?
   end
 end

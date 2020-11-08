@@ -25,54 +25,77 @@
 
     <nav class="navbar is-info">
   		<div class="navbar-brand">
-      <% if signed_in? %>
-  		  <%= link_to authenticated_root_path, class: "navbar-item" do %>
-  			  <h1 class="title is-5">Odin Facebook</h1>
-  		  <% end %>
-      <% else %>
-        <%= link_to unauthenticated_root_path, class: "navbar-item" do %>
-  			  <h1 class="title is-5">Odin Facebook</h1>
-  		  <% end %>
-      <% end %>
-        <div class="navbar-burger burger" data-target="navbarExample">
+        <% if signed_in? %>
+          <%= link_to authenticated_root_path, class: "navbar-item" do %>
+            <h1 class="title is-5">Odin Facebook</h1>
+          <% end %>
+        <% else %>
+          <%= link_to unauthenticated_root_path, class: "navbar-item" do %>
+            <h1 class="title is-5">Odin Facebook</h1>
+          <% end %>
+        <% end %>
+        <div id='navbarBurger' class="navbar-burger burger" data-target="navMenuDocumentation">
           <span></span>
           <span></span>
           <span></span>
         </div>
   	  </div>
+      <div id='navMenuDocumentation' class='navbar-menu'>
+        <div class='navbar-start'>
+           <a class='navbar-item bd-navbar-item-documentation is-active'>
+            <%= link_to 'Profile', users_show_path, class: "button is-info is-inverted" %>
+          </a>
+        </div>
+      </div>
 
       <div id="navbarExample" class="navbar-menu">
-				<div class="navbar-end">
+				<div class="navbar-start">
           <div class="navbar-item">
-					  <div class="field is-grouped">
-              <% if signed_in? %>
-                <% if current_user.profile %>
-                  <p class='control'>
-                    <%= link_to current_user.profile.fname + ' ' + current_user.profile.lname, users_show_path, class: "button is-info is-inverted" %>
-                  </p>
+            <nav class="navbar is-info is-inverted" role="navigation" aria-label="dropdown navigation">
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Menu
+                </a>
+              
+                <div class="navbar-dropdown">
+                <% if signed_in? %>
+                  <% if current_user.profile %>
+                    <a class='navbar-item'>
+                      <%= link_to 'Profile', users_show_path, class: "button is-info is-inverted" %>
+                    </a>
+                  <% else %>
+                    <a class='navbar-item'>
+                      <%= link_to 'Create your Profile', users_show_path, class: "button is-info is-inverted" %>
+                    </a>
+                  <% end %>
+                  <a class="navbar-item">
+                    <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
+                  </a>
+                  <a class="navbar-item">
+                      <%= link_to 'Add a friend', users_path, class: "button is-info is-inverted" %>
+                  </a>
+                  <a class="navbar-item">
+                    <%= link_to 'See Friend Requests', friend_requests_path, class: "button is-info is-inverted" %>
+                  </a>
+                  <a class='navbar-item'>
+                    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "button is-info is-inverted" %>
+                  </a>
+                
                 <% else %>
-                  <p class='control'>
-                    <%= link_to 'Create your Profile', users_show_path, class: "button is-info is-inverted" %>
-                  </p>
+                  <a class='navbar-item'>
+                    <%= link_to 'Sign up', new_user_registration_path, class: "button is-info is-inverted"%>
+                  </a>
+                  <a class='navbar-item'>
+                    <%= link_to 'Sign in', new_user_session_path, class: "button is-info is-inverted" %>
+                  </a>
                 <% end %>
-                <p class='control'>
-                  <%= link_to 'Add a friend', friendships_path, class: "button is-info is-inverted" %>
-                </p>
-                <p class='control'>
-                  <%= link_to 'See Friend Requests', friend_requests_path, class: "button is-info is-inverted" %>
-                </p>
-                <p class='control'>
-                  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "button is-info is-inverted" %>
-                </p>
-              <% else %>
-                <p class='control'>
-                  <%= link_to 'Sign up', new_user_registration_path, class: "button is-info is-inverted"%>
-                </p>
-                <p class='control'>
-                  <%= link_to 'Sign in', new_user_session_path, class: "button is-info is-inverted" %>
-                </p>
-              <% end %>
-            </div>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item">
+                    Version 0.9.1
+                  </div>
+                </div>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
