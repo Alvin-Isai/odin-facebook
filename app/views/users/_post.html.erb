@@ -1,8 +1,8 @@
 <div class='column is-half'>
   <nav class='panel'>
-    <p class='panel-heading'>Posts</p>
+    <p class='panel-heading'>My Posts</p>
   </nav>
-  <% @posts.each do |post| %>
+  <% current_user.posts.each do |post| %>
     <div class='box'>    
       <article class="media">
         <figure class="media-left">
@@ -25,7 +25,13 @@
           <nav class="level is-mobile">
             <div class="level-left">
               <%= link_to post, class: "level-item" do %>
-                <span class="icon is-small"><i class="fa fa-eye fa fa-lg"></i></span>
+                <span class="icon is-small"><i class="fa fa-eye"></i></span>
+              <% end %>
+              <%= link_to edit_post_path(post), class: "level-item" do %>
+                <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              <% end %>
+              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: "level-item" do %>
+                <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
               <% end %>
               <a class='level-item'>
                 <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'like' : 'likes' %>

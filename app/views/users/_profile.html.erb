@@ -18,7 +18,8 @@
                     <small><%= current_user.profile.bio %></small>
                   <% else %>
                     <small><i>No bio has been made...</i></small>
-                  <% end %>
+                  <% end %><br>
+                  <small><strong>Occupation:</strong> <%= current_user.profile.occupation %></small>
                 </p>
               </div>
             </div>

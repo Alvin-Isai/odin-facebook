@@ -10,29 +10,39 @@
       </ul>
     </div>
   <% end %>
-
+  <div class='control'>
+  <p class='label'>Profile pic</p>
   <p>
     <%= form.file_field :avatar %>
   </p>
+  </div><br>
 
   <div class="field">
-    <%= form.label :fname %>
-    <%= form.text_field :fname %>
+    <div class='control'>
+      <%= form.label :fname, 'First name', class: 'label'%>
+      <%= form.text_field :fname, class: 'input' %>
+    </div class='control'>
   </div>
 
   <div class="field">
-    <%= form.label :lname %>
-    <%= form.text_field :lname %>
+    <div class='control'>
+      <%= form.label :lname, 'Last name', class: 'label' %>
+      <%= form.text_field :lname, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :occupation %>
-    <%= form.text_field :occupation %>
+    <div class='control'>
+      <%= form.label :occupation, class: 'label' %>
+      <%= form.text_field :occupation, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :bio %>
-    <%= form.text_area :bio %>
+    <div class='control'>
+      <%= form.label :bio, class: 'label' %>
+      <%= form.text_area :bio, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
@@ -40,6 +50,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <div class='control'>
+      <%= form.submit 'Submit', class: 'button is-info'  %>
+    </div>
   </div>
 <% end %>

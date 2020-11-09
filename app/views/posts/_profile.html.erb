@@ -12,11 +12,12 @@
 					<div class="content">
 						<p>
 						  <strong><%= current_user.profile.fname + ' ' + current_user.profile.lname%></strong><br />
-									<% unless current_user.profile.bio.nil? %>
-										<small><%= current_user.profile.bio %></small>
-									<% else %>
-										<small><i>No bio has been made...</i></small>
-									<% end %>
+                <% unless current_user.profile.bio.empty? %>
+                  <small><%= current_user.profile.bio %></small>
+                <% else %>
+                  <small><i>No bio has been made...</i></small>
+                <% end %><br>
+                <small><strong>Occupation:</strong> <%= current_user.profile.occupation %></small>
 						</p>
 					</div>
 				</div>
@@ -41,8 +42,8 @@
 						<p class="heading">Edit</p>
 						<p class="title is-6">
 							<%= link_to edit_profile_path, class: "level-item" do %>
-                				<span class="icon is-small"><i class="fa fa-pencil"></i></span>
-              				<% end %>
+                <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              <% end %>
 						</p>
 					</div>
 				</div>

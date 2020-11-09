@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @friends = Friendship.all
-    @posts = Post.all.order('created_at DESC')
+    @posts = Post.where(user_id: current_user.friends).or(Post.where(user_id: current_user.id)).order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -63,13 +63,14 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end

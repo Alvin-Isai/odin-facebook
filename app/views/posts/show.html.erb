@@ -1,5 +1,5 @@
 <div class='columns is-centered'>
-  <div class='column is-half'>
+  <div class='column is-one-quarter'>
     <div class='box'>    
       <article class="media">
         <figure class="media-left">
@@ -26,14 +26,6 @@
               </a>
             </div>
           </nav>
-        </div>
-        <div class="media-right">
-          <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-          <% if pre_like %>
-            <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
-          <% else %>
-            <%= button_to 'Like', post_likes_path(@post), method: :post %>
-          <% end %>
         </div>
       </article>
     </div>

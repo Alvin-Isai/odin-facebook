@@ -32,4 +32,45 @@
      margin-bottom: 0;
  }
 
+ a:hover {
+    text-decoration: none;
+    background-color: white;
+}
+
+
+  .footer {
+    position: relative;
+    height: 2em;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  button {
+    border: none;
+    outline: none;
+    background-color: white;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 60%, 100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  
+    40% {
+      -webkit-transform: translateY(-20px);
+      transform: translateY(-20px);
+    }
+  
+    80% {
+      -webkit-transform: translateY(-10px);
+      transform: translateY(-10px);
+    }
+  }
+
+  button:hover {
+   animation: bounce 1s;
+  }
  

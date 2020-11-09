@@ -40,14 +40,6 @@
           <span></span>
         </div>
   	  </div>
-      <div id='navMenuDocumentation' class='navbar-menu'>
-        <div class='navbar-start'>
-           <a class='navbar-item bd-navbar-item-documentation is-active'>
-            <%= link_to 'Profile', users_show_path, class: "button is-info is-inverted" %>
-          </a>
-        </div>
-      </div>
-
       <div id="navbarExample" class="navbar-menu">
 				<div class="navbar-start">
           <div class="navbar-item">
@@ -61,7 +53,9 @@
                 <% if signed_in? %>
                   <% if current_user.profile %>
                     <a class='navbar-item'>
-                      <%= link_to 'Profile', users_show_path, class: "button is-info is-inverted" %>
+                      <%= link_to users_show_path, class: "button is-info is-inverted" do %>
+                        <i class="fa fa-id-card">  Profile</i>
+                      <% end %>
                     </a>
                   <% else %>
                     <a class='navbar-item'>
@@ -69,24 +63,36 @@
                     </a>
                   <% end %>
                   <a class="navbar-item">
-                    <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
+                    <%= link_to new_post_path, class: "button is-info is-inverted" do %>
+                      <i class="fa fa-plus"> New Post</i>
+                    <% end %>
                   </a>
                   <a class="navbar-item">
-                      <%= link_to 'Add a friend', users_path, class: "button is-info is-inverted" %>
+                      <%= link_to users_path, class: "button is-info is-inverted" do %>
+                        <i class="fa fa-users">  Add a friend</i>
+                      <% end %>
                   </a>
                   <a class="navbar-item">
-                    <%= link_to 'See Friend Requests', friend_requests_path, class: "button is-info is-inverted" %>
+                    <%= link_to friend_requests_path, class: "button is-info is-inverted" do %>
+                      <i class="fa fa-plus-square">  See Friend Requests</i>
+                    <% end %>
                   </a>
                   <a class='navbar-item'>
-                    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "button is-info is-inverted" %>
+                    <%= link_to destroy_user_session_path, method: :delete, class: "button is-info is-inverted" do %>                    
+                      <i class="fa fa-sign-out">  Logout</i>
+                    <% end %>
                   </a>
                 
                 <% else %>
                   <a class='navbar-item'>
-                    <%= link_to 'Sign up', new_user_registration_path, class: "button is-info is-inverted"%>
+                    <%= link_to new_user_registration_path, class: "button is-info is-inverted" do %>
+                      <i class="fa fa-user-plus">  Sign Up</i>
+                    <% end %>
                   </a>
                   <a class='navbar-item'>
-                    <%= link_to 'Sign in', new_user_session_path, class: "button is-info is-inverted" %>
+                    <%= link_to new_user_session_path, class: "button is-info is-inverted" do %>
+                      <i class="fa fa-sign-in">  Sign in</i>
+                    <% end %>
                   </a>
                 <% end %>
                   <hr class="navbar-divider">
@@ -99,7 +105,16 @@
           </div>
         </div>
       </div>
-    </nav>  
+    </nav>
     <%= yield %>
   </body>
+   <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Odin Facebook</strong> by <a href="https://github.com/Alvin-Isai">Alvin Lopez</a>. The source code can be found
+          <a href="https://github.com/Alvin-Isai/odin-facebook">here</a>. The website content
+          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer> 
 </html>
