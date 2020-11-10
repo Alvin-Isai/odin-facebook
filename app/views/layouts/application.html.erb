@@ -52,37 +52,41 @@
                 <div class="navbar-dropdown">
                 <% if signed_in? %>
                   <% if current_user.profile %>
+                    
                     <a class='navbar-item'>
                       <%= link_to users_show_path, class: "button is-info is-inverted" do %>
                         <i class="fa fa-id-card">  Profile</i>
                       <% end %>
                     </a>
-                  <% else %>
-                    <a class='navbar-item'>
-                      <%= link_to 'Create your Profile', users_show_path, class: "button is-info is-inverted" %>
+
+                    <a class="navbar-item">
+                      <%= link_to new_post_path, class: "button is-info is-inverted" do %>
+                        <i class="fa fa-plus"> New Post</i>
+                      <% end %>
                     </a>
-                  <% end %>
-                  <a class="navbar-item">
-                    <%= link_to new_post_path, class: "button is-info is-inverted" do %>
-                      <i class="fa fa-plus"> New Post</i>
-                    <% end %>
-                  </a>
-                  <a class="navbar-item">
+                    <a class="navbar-item">
                       <%= link_to users_path, class: "button is-info is-inverted" do %>
                         <i class="fa fa-users">  Add a friend</i>
                       <% end %>
-                  </a>
-                  <a class="navbar-item">
-                    <%= link_to friend_requests_path, class: "button is-info is-inverted" do %>
-                      <i class="fa fa-plus-square">  See Friend Requests</i>
-                    <% end %>
-                  </a>
-                  <a class='navbar-item'>
-                    <%= link_to destroy_user_session_path, method: :delete, class: "button is-info is-inverted" do %>                    
-                      <i class="fa fa-sign-out">  Logout</i>
-                    <% end %>
-                  </a>
-                
+                    </a>
+                    <a class="navbar-item">
+                      <%= link_to friend_requests_path, class: "button is-info is-inverted" do %>
+                        <i class="fa fa-plus-square">  See Friend Requests</i>
+                      <% end %>
+                    </a>
+                    <a class='navbar-item'>
+                      <%= link_to destroy_user_session_path, method: :delete, class: "button is-info is-inverted" do %>                    
+                        <i class="fa fa-sign-out">  Logout</i>
+                      <% end %>
+                    </a>
+                  <% else %>
+                    <a class='navbar-item'>
+                      <%= link_to new_profile_path, class: "button is-info is-inverted" do %>
+                        <i class="fa fa-id-card">  Create your Profile</i>
+                      <% end %>
+                    </a>
+                  <% end %>
+               
                 <% else %>
                   <%= link_to user_facebook_omniauth_authorize_path, class: "button is-info is-inverted" do %>
                     <i class="fa fa-facebook-square">  Sign in with Facebook</i>
