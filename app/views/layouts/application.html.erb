@@ -84,6 +84,10 @@
                   </a>
                 
                 <% else %>
+                  <%= link_to user_facebook_omniauth_authorize_path, class: "button is-info is-inverted" do %>
+                    <i class="fa fa-facebook-square">  Sign in with Facebook</i>
+                  <% end %>
+                  
                   <a class='navbar-item'>
                     <%= link_to new_user_registration_path, class: "button is-info is-inverted" do %>
                       <i class="fa fa-user-plus">  Sign Up</i>
