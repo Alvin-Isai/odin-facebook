@@ -24,7 +24,7 @@
   	<% end %>
 
     <nav class="navbar is-info">
-  		<div class="navbar-brand">
+      <div class="navbar-brand">
         <% if signed_in? %>
           <%= link_to authenticated_root_path, class: "navbar-item" do %>
             <h1 class="title is-5">Odin Facebook</h1>
@@ -34,86 +34,86 @@
             <h1 class="title is-5">Odin Facebook</h1>
           <% end %>
         <% end %>
-        <div id='navbarBurger' class="navbar-burger burger" data-target="navMenuDocumentation">
+        
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
           <span></span>
           <span></span>
           <span></span>
         </div>
-  	  </div>
-      <div id="navbarExample" class="navbar-menu">
-				<div class="navbar-start">
-          <div class="navbar-item">
-            <nav class="navbar is-info is-inverted" role="navigation" aria-label="dropdown navigation">
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  Menu
-                </a>
-              
-                <div class="navbar-dropdown">
-                <% if signed_in? %>
-                  <% if current_user.profile %>
-                    
-                    <a class='navbar-item'>
-                      <%= link_to users_show_path, class: "button is-info is-inverted" do %>
-                        <i class="fa fa-id-card">  Profile</i>
-                      <% end %>
-                    </a>
+      </div>
 
-                    <a class="navbar-item">
-                      <%= link_to new_post_path, class: "button is-info is-inverted" do %>
-                        <i class="fa fa-plus"> New Post</i>
-                      <% end %>
-                    </a>
-                    <a class="navbar-item">
-                      <%= link_to users_path, class: "button is-info is-inverted" do %>
-                        <i class="fa fa-users">  Add a friend</i>
-                      <% end %>
-                    </a>
-                    <a class="navbar-item">
-                      <%= link_to friend_requests_path, class: "button is-info is-inverted" do %>
-                        <i class="fa fa-plus-square">  See Friend Requests</i>
-                      <% end %>
-                    </a>
-                    <a class='navbar-item'>
-                      <%= link_to destroy_user_session_path, method: :delete, class: "button is-info is-inverted" do %>                    
-                        <i class="fa fa-sign-out">  Logout</i>
-                      <% end %>
-                    </a>
-                  <% else %>
-                    <a class='navbar-item'>
-                      <%= link_to new_profile_path, class: "button is-info is-inverted" do %>
-                        <i class="fa fa-id-card">  Create your Profile</i>
-                      <% end %>
-                    </a>
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Menu
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <% if signed_in? %>
+              <% if current_user.profile %>
+                <a class='navbar-item'>
+                  <%= link_to users_show_path, class: "button is-info is-inverted" do %>
+                    <i class="fa fa-id-card"> Profile</i>
                   <% end %>
-               
-                <% else %>
-                  <%= link_to user_facebook_omniauth_authorize_path, class: "button is-info is-inverted" do %>
-                    <i class="fa fa-facebook-square">  Sign in with Facebook</i>
+                </a>
+                <a class="navbar-item">
+                  <%= link_to new_post_path, class: "button is-info is-inverted" do %>
+                    <i class="fa fa-plus"> New Post</i>
                   <% end %>
-                  
-                  <a class='navbar-item'>
-                    <%= link_to new_user_registration_path, class: "button is-info is-inverted" do %>
-                      <i class="fa fa-user-plus">  Sign Up</i>
-                    <% end %>
-                  </a>
-                  <a class='navbar-item'>
-                    <%= link_to new_user_session_path, class: "button is-info is-inverted" do %>
-                      <i class="fa fa-sign-in">  Sign in</i>
-                    <% end %>
-                  </a>
+                </a>
+                <a class="navbar-item">
+                  <%= link_to users_path, class: "button is-info is-inverted" do %>
+                    <i class="fa fa-users"> Add a friend</i>
+                  <% end %>
+                </a>
+                <a class="navbar-item">
+                  <%= link_to friend_requests_path, class: "button is-info is-inverted" do %>
+                    <i class="fa fa-plus-square"> See Friend Requests</i>
+                  <% end %>
+                </a>
+                <a class='navbar-item'>
+                  <%= link_to destroy_user_session_path, method: :delete, class: "button is-info is-inverted" do %> 
+                    <i class="fa fa-sign-out"> Logout</i>
+                  <% end %>
+                </a>
+              <% else %>
+                <a class='navbar-item'>
+                  <%= link_to new_profile_path, class: "button is-info is-inverted" do %>
+                    <i class="fa fa-id-card"> Create your Profile</i>
+                  <% end %>
+                </a>
+              <% end %>
+            <% else %>
+              <%= link_to user_facebook_omniauth_authorize_path, class: "button is-info is-inverted" do %>
+                <i class="fa fa-facebook-square"> Sign in with Facebook</i>
+              <% end %>
+              <a class='navbar-item'>
+                <%= link_to new_user_registration_path, class: "button is-info is-inverted" do %>
+                  <i class="fa fa-user-plus"> Sign Up</i>
                 <% end %>
-                  <hr class="navbar-divider">
-                  <div class="navbar-item">
-                    Version 0.9.1
-                  </div>
-                </div>
-              </div>
-            </nav>
+              </a>
+              <a class='navbar-item'>
+                <%= link_to new_user_session_path, class: "button is-info is-inverted" do %>
+                  <i class="fa fa-sign-in"> Sign in</i>
+                <% end %>
+              </a>
+            <% end %>
           </div>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
+    <script type='text/javascript'>
+      (function () {
+        var burger = document.querySelector('.burger');
+        var nav = document.querySelector('#'+burger.dataset.target);
+
+        burger.addEventListener('click', function () {
+          burger.classList.toggle('is-active');
+          nav.classList.toggle('is-active');
+        });
+      })();
+    </script>
     <%= yield %>
   </body>
    <footer class="footer">

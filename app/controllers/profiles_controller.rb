@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
     respond_to do |format|
       if @profile.save
         # Tell the UserMailer to send a welcome email after save
-        ProfileMailer.with(profile: @profile).welcome_email.deliver_now
+        # ProfileMailer.with(profile: @profile).welcome_email.deliver_now
 
         format.html { redirect_to posts_path, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
